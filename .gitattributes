@@ -1,0 +1,17 @@
+# Configuración automática de saltos de línea
+* text=auto
+
+# Archivos específicos
+*.js text eol=crlf
+*.php text eol=crlf
+*.html text eol=crlf
+*.css text eol=crlf
+*.md text eol=crlf
+
+# Archivos binarios
+*.db binary
+*.zip binary
+*.pdf binary
+*.jpg binary
+*.png binary
+*.gif binary

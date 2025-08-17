@@ -1,0 +1,44 @@
+# Carpeta de uploads - completamente ignorada
+uploads/
+
+# Archivos de configuración local
+config/local.php
+config/local-database.php
+
+# Archivos de logs
+logs/*.log
+api/logs/*.log
+
+# Archivos temporales
+*.tmp
+*.temp
+*.cache
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Archivos de backup
+*.bak
+*.backup
+
+# Archivos de configuración de entorno
+.env
+.env.local
+
+# Base de datos local
+database/*.db
+database/*.sqlite
+
+# Archivos de sesión
+sess_*
+
+# Archivos de error de PHP
+error_log
+php_errors.log

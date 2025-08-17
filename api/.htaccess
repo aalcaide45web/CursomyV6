@@ -1,0 +1,15 @@
+# Configuración específica SOLO para la API de uploads
+# Esto resuelve el error 413 sin afectar el resto de la aplicación
+
+<IfModule mod_php.c>
+    php_value upload_max_filesize 512000M
+    php_value post_max_size 512000M
+    php_value max_execution_time 86400
+    php_value memory_limit 2048M
+    php_value max_file_uploads 20
+    php_value max_input_vars 3000
+</IfModule>
+
+# SOLO para uploads: Sin límite de tamaño en el body del request
+# Esto está permitido en .htaccess cuando es específico del directorio
+LimitRequestBody 0

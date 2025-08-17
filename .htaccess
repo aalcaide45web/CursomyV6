@@ -1,0 +1,33 @@
+# Configuración de Apache para uploads grandes
+<IfModule mod_php.c>
+    php_value upload_max_filesize 512000M
+    php_value post_max_size 512000M
+    php_value max_execution_time 86400
+    php_value memory_limit 2048M
+    php_value max_file_uploads 20
+    php_value max_input_vars 3000
+</IfModule>
+
+
+
+# Configuración de Apache
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /cloneUdemyV1B/
+    
+    # Permitir acceso a archivos y directorios existentes
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    
+    # Redirigir todo lo demás a index.php
+    RewriteRule ^(.*)$ index.php [QSA,L]
+</IfModule>
+
+# Configuración de seguridad
+<Files ".htaccess">
+    Require all denied
+</Files>
+
+<Files "*.log">
+    Require all denied
+</Files>

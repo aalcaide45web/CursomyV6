@@ -1,0 +1,6 @@
+sudo chmod -R 775 /var/www/html/uploads
+sudo chown -R www-data:www-data /var/www/html/uploads
+sudo chmod 660 /var/www/html/database/cursosmy.db
+sudo chmod 770 /var/www/html/database
+sudo chown www-data:www-data /var/www/html/database
+sudo chown www-data:www-data /var/www/html/database/cursosmy.db
