@@ -1,62 +1,91 @@
-# 🎓 Aplicación CursomyV6
+# 🎓 CursomyV6 - Reproductor Personal de Cursos
+
+## ⚠️ **IMPORTANTE: LIMITACIONES DE SUBIDA**
+
+### 🚫 **NO SUBIR VIDEOS DESDE MÚLTIPLES PESTAÑAS**
+- **Solo una pestaña activa** para subida de videos
+- **Cerrar todas las demás pestañas** antes de subir
+- **Esperar a que termine** la subida de un curso antes de subir otro
+
+### 🔒 **SUBIDA SECUENCIAL OBLIGATORIA**
+- **Un curso a la vez** por limitaciones de PHP
+- **No subir videos simultáneamente** desde diferentes navegadores
+- **Esperar confirmación** de finalización antes de continuar
+
+---
 
 ## 📋 Descripción
 
-**CursomyV6** es una plataforma educativa completa desarrollada en PHP que permite la gestión y distribución de cursos online. La aplicación está diseñada para instructores que desean crear, gestionar y vender contenido educativo de manera profesional.
+**CursomyV6** es una **aplicación personal** para gestionar y reproducir tus propios cursos de video. No es una plataforma de distribución online, sino un **reproductor avanzado** que te permite organizar, estudiar y tomar notas de tus cursos de manera profesional.
+
+### 🎯 **¿Para qué sirve?**
+- **Reproducir tus cursos** con un reproductor avanzado
+- **Organizar contenido** por secciones y lecciones
+- **Tomar notas con timestamp** durante la reproducción
+- **Agregar comentarios** a cada clase
+- **Buscar contenido** rápidamente
+- **Gestionar progreso** de visualización
+
+### 🚫 **¿Para qué NO sirve?**
+- ❌ Distribuir cursos online
+- ❌ Compartir contenido con otros usuarios
+- ❌ Sistema de pagos o suscripciones
+- ❌ Plataforma multi-usuario
+
+---
 
 ## ✨ Características Principales
 
-### 🎯 Gestión de Cursos
-- Creación y edición de cursos con múltiples secciones
-- Sistema de temáticas y categorías
-- Gestión de recursos multimedia (videos, imágenes, documentos)
-- Control de progreso del estudiante
-- Sistema de notas y evaluaciones
+### 🎥 **Reproductor Avanzado**
+- **Guardado automático de progreso** - retoma donde lo dejaste
+- **Sistema de notas con timestamp** - crea notas en momentos específicos
+- **Comentarios por clase** - agrega comentarios que se guardan permanentemente
+- **Navegación entre clases** de la misma sección
+- **Atajos de teclado** (Espacio, flechas, M para mute, F para fullscreen)
+- **Marcadores visuales** de notas en la barra de progreso
 
-### 👨‍🏫 Gestión de Instructores
-- Panel de administración para instructores
-- Gestión de perfiles y credenciales
-- Sistema de permisos y roles
-- Dashboard personalizado
+### 📚 **Gestión de Contenido**
+- **Organización por secciones** y lecciones
+- **Sistema de búsqueda** en títulos y contenido
+- **Categorización por temáticas** e instructores
+- **Gestión de recursos** (videos, imágenes, documentos)
 
-### 📚 Sistema de Contenido
-- Reproductor de video integrado
-- Sistema de comentarios y feedback
-- Gestión de recursos descargables
-- Organización por secciones y lecciones
+### 🔍 **Sistema de Búsqueda y Notas**
+- **Búsqueda en tiempo real** por título, instructor o temática
+- **Notas con timestamp** que te llevan al momento exacto del video
+- **Comentarios organizados** por clase y sección
+- **Historial de progreso** detallado
 
-### 🔐 Sistema de Autenticación
-- Login y registro de usuarios
-- Recuperación de contraseñas con sistema temporal
-- Gestión de sesiones seguras
-- Perfiles de usuario personalizables
+### 🎨 **Interfaz Moderna**
+- **Diseño glassmorphism** con efectos de cristal
+- **Modo oscuro** optimizado para visualización prolongada
+- **Responsive** para móviles, tablets y desktop
+- **Tailwind CSS** para diseño consistente
 
-### 📊 Análisis y Reportes
-- Seguimiento del progreso del estudiante
-- Sistema de logs detallado
-- Estadísticas de uso
-- Reportes de actividad
+---
 
 ## 🛠️ Requisitos del Sistema
 
 ### Servidor Web
 - **Apache** 2.4+ (recomendado)
 - **PHP** 7.4+ (recomendado PHP 8.0+)
-- **MySQL** 5.7+ o **SQLite** 3.x
+- **SQLite** 3.x (incluido por defecto)
 
 ### Extensiones PHP Requeridas
-- `mysqli` o `pdo_mysql`
+- `sqlite3` o `pdo_sqlite`
 - `gd` (para procesamiento de imágenes)
 - `curl` (para funcionalidades de red)
 - `json` (para APIs)
 - `session` (para gestión de sesiones)
 - `fileinfo` (para validación de archivos)
 
-### Configuración PHP
+### Configuración PHP Crítica
 - `upload_max_filesize`: 100M o superior
 - `post_max_size`: 100M o superior
 - `max_execution_time`: 300 segundos
 - `memory_limit`: 256M o superior
+
+---
 
 ## 🚀 Instalación
 
@@ -68,24 +97,14 @@ cd CursomyV6
 
 ### 2. Configurar el Servidor Web
 - Coloca el proyecto en tu directorio web (ej: `htdocs/` en XAMPP)
-- Asegúrate de que Apache tenga permisos de escritura en la carpeta `uploads/`
+- **Asegúrate de que Apache tenga permisos de escritura** en la carpeta `uploads/`
 
-### 3. Configurar la Base de Datos
-- **Opción A: MySQL**
-  - Crea una base de datos MySQL
-  - Importa el esquema desde `database/cursosmy.sql` (si existe)
-  - Configura las credenciales en `config/database.php`
-
-- **Opción B: SQLite**
-  - La aplicación puede usar SQLite por defecto
-  - Asegúrate de que la carpeta `database/` tenga permisos de escritura
-
-### 4. Configurar la Aplicación
+### 3. Configurar la Aplicación
 - Edita `config/config.php` con la configuración de tu entorno
 - Ajusta `config/upload-limits.php` según tus necesidades
 - Verifica que `config/database.php` tenga la configuración correcta
 
-### 5. Permisos de Archivos
+### 4. Permisos de Archivos
 ```bash
 # En sistemas Unix/Linux
 chmod 755 uploads/
@@ -93,25 +112,34 @@ chmod 755 logs/
 chmod 755 database/
 ```
 
-### 6. Acceder a la Aplicación
+### 5. Acceder a la Aplicación
 - Abre tu navegador y ve a `http://localhost/CursomyV6`
 - La aplicación debería cargar correctamente
 
-## ⚙️ Configuración
+---
 
-### Archivos de Configuración Principales
-- `config/config.php` - Configuración general de la aplicación
-- `config/database.php` - Configuración de la base de datos
-- `config/upload-limits.php` - Límites de subida de archivos
-- `config/logger.php` - Configuración del sistema de logs
+## ⚠️ **USO CORRECTO - LECTURA OBLIGATORIA**
 
-### Variables de Entorno Importantes
-- `DB_HOST` - Host de la base de datos
-- `DB_NAME` - Nombre de la base de datos
-- `DB_USER` - Usuario de la base de datos
-- `DB_PASS` - Contraseña de la base de datos
-- `UPLOAD_PATH` - Ruta de la carpeta de uploads
-- `LOG_PATH` - Ruta de la carpeta de logs
+### 🚫 **PROHIBIDO - NO HACER**
+- ❌ **NO abrir múltiples pestañas** para subir videos
+- ❌ **NO subir videos simultáneamente** desde diferentes navegadores
+- ❌ **NO interrumpir** una subida en curso
+- ❌ **NO cerrar el navegador** durante la subida
+
+### ✅ **CORRECTO - HACER ASÍ**
+- ✅ **Cerrar todas las pestañas** antes de subir
+- ✅ **Subir UN curso a la vez**
+- ✅ **Esperar confirmación** de finalización
+- ✅ **Usar solo una pestaña** activa para subidas
+
+### 🔄 **Proceso Recomendado**
+1. **Cierra todas las pestañas** del navegador
+2. **Abre solo una pestaña** con la aplicación
+3. **Sube un curso completo** (espera a que termine)
+4. **Confirma que terminó** la subida
+5. **Ahora puedes subir** el siguiente curso
+
+---
 
 ## 📁 Estructura del Proyecto
 
@@ -120,15 +148,17 @@ CursomyV6/
 ├── api/                    # APIs y endpoints
 ├── config/                 # Archivos de configuración
 ├── css/                    # Estilos CSS (Tailwind CSS)
-├── database/               # Base de datos y esquemas
+├── database/               # Base de datos SQLite
 ├── js/                     # JavaScript del frontend
 ├── logs/                   # Archivos de logs
 ├── uploads/                # Archivos subidos (ignorado por Git)
-├── index.php              # Página principal
-├── curso.php              # Vista de curso individual
+├── index.php              # Dashboard principal
+├── curso.php              # Gestión de curso individual
 ├── reproductor.php        # Reproductor de video
 └── README.md              # Este archivo
 ```
+
+---
 
 ## 🔧 Solución de Problemas Comunes
 
@@ -139,14 +169,22 @@ Si tienes problemas con la subida de archivos grandes:
 3. Ejecuta `fix-upload-limits.php` para verificar la configuración
 
 ### Problemas de Base de Datos
-1. Verifica las credenciales en `config/database.php`
-2. Asegúrate de que la base de datos esté creada
-3. Verifica que el usuario tenga permisos suficientes
+1. Verifica que la carpeta `database/` tenga permisos de escritura
+2. La base de datos SQLite se crea automáticamente
+3. Verifica que PHP tenga la extensión SQLite habilitada
 
 ### Errores de Permisos
 1. Verifica que Apache tenga permisos de escritura en `uploads/`
 2. Revisa los permisos de `logs/` y `database/`
 3. En Windows, ejecuta como administrador si es necesario
+
+### Problemas de Subida Múltiple
+1. **Cierra todas las pestañas** del navegador
+2. **Reinicia el navegador** si es necesario
+3. **Usa solo una pestaña** para subidas
+4. **Espera a que termine** antes de subir otro curso
+
+---
 
 ## 📝 Logs y Debugging
 
@@ -156,12 +194,16 @@ La aplicación incluye un sistema de logs completo:
 - **Visor de logs**: `logs-viewer.php`
 - **Consola de debug**: `debug-console.php`
 
+---
+
 ## 🔒 Seguridad
 
 - La carpeta `uploads/` está completamente excluida del control de versiones
-- Sistema de autenticación seguro con contraseñas temporales
+- Sistema de autenticación local
 - Validación de archivos subidos
 - Protección contra ataques comunes
+
+---
 
 ## 🤝 Contribución
 
@@ -172,27 +214,35 @@ Para contribuir al proyecto:
 4. Haz push a la rama (`git push origin feature/nueva-funcionalidad`)
 5. Abre un Pull Request
 
+---
+
 ## 📄 Licencia
 
 Este proyecto está bajo licencia MIT. Ver el archivo `LICENSE` para más detalles.
 
-## 📞 Soporte
-
-Si tienes problemas o preguntas:
-- Revisa la documentación en este README
-- Consulta los logs de la aplicación
-- Abre un issue en GitHub
-- Contacta al equipo de desarrollo
+---
 
 ## 🚀 Roadmap
 
-- [ ] Sistema de pagos integrado
-- [ ] App móvil nativa
-- [ ] Sistema de certificados
-- [ ] Integración con LMS externos
-- [ ] API pública para desarrolladores
-- [ ] Sistema de notificaciones push
+- [ ] Mejoras en el reproductor de video
+- [ ] Sistema de marcadores avanzados
+- [ ] Exportación de notas y comentarios
+- [ ] Integración con servicios de almacenamiento en la nube
+- [ ] App móvil para visualización
+- [ ] Sistema de respaldo automático
 
 ---
 
-**Desarrollado con ❤️ por el equipo de CursomyV6**
+## 📞 Soporte
+
+Si tienes problemas o preguntas:
+- **Primero**: Revisa esta documentación completa
+- **Segundo**: Consulta los logs de la aplicación
+- **Tercero**: Abre un issue en GitHub
+- **Cuarto**: Contacta al equipo de desarrollo
+
+---
+
+**⚠️ RECUERDA: Esta es una aplicación PERSONAL. NO subas videos desde múltiples pestañas. UN curso a la vez. ⚠️**
+
+**Desarrollado con ❤️ para uso personal y educativo**
