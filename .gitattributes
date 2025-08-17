@@ -1,17 +1,37 @@
-# Configuración automática de saltos de línea
-* text=auto
+# Configuración de finales de línea para diferentes sistemas operativos
+*.php text eol=lf
+*.js text eol=lf
+*.css text eol=lf
+*.html text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
+*.json text eol=lf
+*.xml text eol=lf
+*.sql text eol=lf
+*.conf text eol=lf
+*.htaccess text eol=lf
 
-# Archivos específicos
-*.js text eol=crlf
-*.php text eol=crlf
-*.html text eol=crlf
-*.css text eol=crlf
-*.md text eol=crlf
-
-# Archivos binarios
+# Archivos binarios que no deben ser modificados
 *.db binary
-*.zip binary
-*.pdf binary
+*.sqlite binary
+*.mp4 binary
+*.avi binary
+*.mov binary
+*.wmv binary
+*.flv binary
+*.webm binary
 *.jpg binary
+*.jpeg binary
 *.png binary
 *.gif binary
+*.pdf binary
+*.zip binary
+*.rar binary
+*.7z binary
+*.tar binary
+*.gz binary
+
+# Archivos de configuración específicos del sistema
+*.log text eol=lf
+*.tmp text eol=lf
+*.cache text eol=lf
