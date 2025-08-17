@@ -6,6 +6,7 @@
 - **Solo una pestaña activa** para subida de videos
 - **Cerrar todas las demás pestañas** antes de subir
 - **Esperar a que termine** la subida de un curso antes de subir otro
+- **⚠️⚠️⚠️⚠️Si en la subida de Carpeta, la ruta de esta, es muy larga, dará errores, a veces los titulos de los videos son muy largos** Cambiarlo a una ruta mas corta o reducir el largo de los nombres.⚠️⚠️⚠️⚠️
 
 ### 🔒 **SUBIDA SECUENCIAL OBLIGATORIA**
 - **Un curso a la vez** por limitaciones de PHP
