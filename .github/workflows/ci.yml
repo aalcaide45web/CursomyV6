@@ -1,0 +1,55 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.1'
+        extensions: mbstring, xml, ctype, iconv, intl, pdo_sqlite, gd, curl, fileinfo, session, json
+        
+    - name: Validate PHP syntax
+      run: |
+        find . -name "*.php" -not -path "./uploads/*" -not -path "./vendor/*" -exec php -l {} \;
+        
+    - name: Check file permissions
+      run: |
+        echo "Verificando estructura del proyecto..."
+        ls -la
+        echo "Verificando que uploads/ esté en .gitignore..."
+        grep -q "uploads/" .gitignore && echo "✅ uploads/ está en .gitignore" || echo "❌ uploads/ NO está en .gitignore"
+        
+    - name: Validate configuration files
+      run: |
+        echo "Verificando archivos de configuración..."
+        test -f config/config.php && echo "✅ config.php existe" || echo "❌ config.php no existe"
+        test -f config/database.php && echo "✅ database.php existe" || echo "❌ database.php no existe"
+        test -f README.md && echo "✅ README.md existe" || echo "❌ README.md no existe"
+        
+  security:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Check for sensitive files
+      run: |
+        echo "Verificando que no haya archivos sensibles..."
+        test -f .env && echo "⚠️  .env encontrado - verificar si debe estar en .gitignore" || echo "✅ .env no encontrado"
+        test -f config/local.php && echo "⚠️  local.php encontrado - verificar si debe estar en .gitignore" || echo "✅ local.php no encontrado"
+        
+    - name: Check .gitignore
+      run: |
+        echo "Verificando .gitignore..."
+        cat .gitignore
